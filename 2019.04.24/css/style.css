@@ -1,0 +1,18 @@
+body {
+    background: #cacaca !important;
+}
+
+input {
+    width: 120px;
+    height: 35px;
+    font-size: 24px !important;
+    text-align: center;
+}
+
+.container {
+    font-family: 'Muli';
+}
+
+.inline {
+    display: inline;
+}

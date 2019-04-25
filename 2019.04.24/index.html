@@ -1,12 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <script src="script.js"></script>
-  </body>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="js/guessTheNumberLab.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Guess the Number!</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Guess the Number!</h1>
+            <p>Guess the secret code.</p>
+            <p>Try to crack the code in as few guesses as possible.</p>
+            <div>
+                <h3>Game Settings:</h3>
+                <p class="inline">What's the smallest number the secret code could be?</p>
+                <input id="setSmallestNum" type="number">
+            </div>
+            <div>
+                <p class="inline">What's the biggest number the secret code could be?</p>
+                <input id="setBiggestNum" type="number">
+            </div>
+            <button id="setGameParameters" class="btn btn-light btn-sm block">Set</button>
+            <div></div>
+            <div class="guessInputSection">
+                <p class="inline">What do you think the secret code is?</p>
+                <input id="guessInput" type="number">
+                <button id="submitGuess" class="btn btn-light btn-sm">Submit Guess</button>
+            </div>
+            <div id="responseToGuess"></div>
+            <button id="resetGame">Reset</button>
+            <div id="guessCount"></div>
+            <div id="guessList"></div>
+        </div>
+    </body>
 </html>
