@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+}
+  
+body {
+    margin: 0;
+    font-family: Helvetica;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 10% auto 5%;
+    grid-template-areas: 
+        "nav"
+        "hdr"
+        "content"
+        "ftr";
+    height: 100vh;
+    width: 100vw;
+    color: white;
+}
+
+footer, aside, main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D33A2C;
+    padding: 15px;
+}
+
+header {
+    grid-area: hdr;
+    background-color: #D33A2C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu {
+    padding: 5px;
+    border-radius: 15%;
+    border: white 2px solid;
+}
+
+.subHeading {
+    background-color: white;
+    color: black;
+    font-size: 30px;
+    box-shadow: 0px 12px 2px 1px rgba(23, 23, 23, .3);
+    /* filter: drop-shadow(0px 20px 4px gray); */
+}
+
+main {
+  grid-area: content;
+  background-color: #BC3429;
+}
+
+footer {
+    grid-area: ftr;
+    background-color: #B13125;
+}
+
+/* .content{
+    height: 50%;
+    width: 100%;
+    text-align: center;
+} */
+
+.content{
+    display: flex;
+    height: 50%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    width: 70%;
+}
+
+.container {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* padding: 5px; */
+}
+
+.logoContainer {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: flex-start;
+}
+
+#logo {
+    /* margin: auto;  */
+    height: 30%;
+    width: 30%;
+
+}
+
+article {
+    margin: auto;
+    padding: 15px;
+}
+
+#article1 {
+    background-color: #BC3327;
+}
+#article2 {
+    background-color: #C7372A;
+}
+#article3 {
+    background-color: #B13125;
+}
+#article4 {
+    background-color: #BC3327;
+}
+
+.authorThumbnail {
+    border-radius: 20%;
+    border: white solid 5px;
+    offset-inline-start: 5%;
+    max-width: 20%;
+    max-height: 20%;
+    display: inline;
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        /* background-color: blue; */
+        /* grid-gap: 5px; */
+        grid-template-columns: 1fr 1fr;
+        /* grid-template-rows: 50px 50px auto 30px; */
+        grid-template-areas: 
+            "nav nav"
+            "hdr hdr"
+            "content content"
+            "ftr ftr"
+    }
+    
+    .content{
+        height: 50%;
+        width: 50%;
+    }
+
+
+}
