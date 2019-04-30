@@ -43,7 +43,7 @@ header {
     justify-content: center;
 }
 
-#menu {
+#topics {
     padding: 5px;
     border-radius: 15%;
     border: white 2px solid;
@@ -54,8 +54,31 @@ header {
     color: black;
     font-size: 30px;
     box-shadow: 0px 12px 2px 1px rgba(23, 23, 23, .3);
-    /* filter: drop-shadow(0px 20px 4px gray); */
 }
+
+/* #navLinkContainer {
+    flex-direction: row;
+    justify-content: space-around;
+    display: none;
+} */
+
+nav .fullWidthNav  {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+}
+nav a:hover{
+    color: black;
+}
+
+a span {
+    font-size: 14px;
+}
+
 
 main {
   grid-area: content;
@@ -134,7 +157,7 @@ article {
 }
 
 .commentThumb {
-    max-height: 30px;
+    max-height: 20px;
     float: left;
     margin-right: 5px;
 }
@@ -155,5 +178,9 @@ article {
     .content{
         height: 50%;
         width: 50%;
+    }
+
+    nav .fullWidthNav {
+        display: flex;
     }
 }
