@@ -43,5 +43,5 @@ class SavingsAccount extends BankAccount {
     }
 }
 
-var myAcct = new CheckingAccount('Mike', 12345, 50, true);
+var myAcct = new CheckingAccount('Mike', 12345, Math.floor(Math.random() * 20000000), true);
 console.log(myAcct);
