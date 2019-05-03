@@ -1,33 +1,75 @@
 input {
     height: 40px;
     width: 40px;
+    text-align: center;
 }
 
-.inputContainer {
+#feedbackContainer{
     display: flex;
+    flex-direction: column;
 }
 
-.previousGuesses {
+.inputContainer, .guessContainer, .blackContainer, .whiteContainer, .turnFeedback {
     display: flex;
+    flex-direction: row;
 }
 
-.sampleGuessBox1 {
+.dotContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.spacer {
+    width: 20px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    border: black solid 1px;
+    border-radius: 50%;
+    margin: 1px;
+}
+
+.white {
+    background-color: white;
+}
+
+.black {
+    background-color: black;
+}
+
+.guessContainer > div {
     height: 40px;
     width: 40px;
+}
+
+.guessPeg1 {
     background-color: red;
 }
-.sampleGuessBox2 {
-    height: 40px;
-    width: 40px;
+
+.guessPeg2 {
     background-color: orange;
 }
-.sampleGuessBox3 {
-    height: 40px;
-    width: 40px;
+
+.guessPeg3 {
     background-color: yellow;
 }
-.sampleGuessBox4 {
-    height: 40px;
-    width: 40px;
+
+.guessPeg4 {
     background-color: green;
 }
+
+.guessPeg5 {
+    background-color: blue;
+}
+
+.guessPeg6 {
+    background-color: indigo;
+}
+
+.guessPeg7 {
+    background-color: purple;
+}
+

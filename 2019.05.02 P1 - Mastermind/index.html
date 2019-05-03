@@ -14,7 +14,8 @@
 <body>
     <h1>Mastermind</h1>
     <p>Instructions</p>
-    <div class="inputContainer">
+    <!-- this will be replaced by dynamic fields -->
+    <div class="inputContainer"> 
         <input id="input1" minlength="1" maxlength="1" class="userInput">
         <input id="input2" minlength="1" maxlength="1" class="userInput">
         <input id="input3" minlength="1" maxlength="1" class="userInput">
@@ -22,13 +23,7 @@
     </div>
     <button id="submitGuess">Submit</button>
     <button id="resetGame">Reset Game</button>
-    <div id="previousGuesses">
-        <div class="guessContainer">
-            <div class="prevGuess"><div class="sampleGuessBox1"></div></div>
-            <div class="prevGuess"><div class="sampleGuessBox2"></div></div>
-            <div class="prevGuess"><div class="sampleGuessBox3"></div></div>
-            <div class="prevGuess"><div class="sampleGuessBox4"></div></div>
-        </div>
-    </div>
+    <!-- everything below this will be replaced by dynamic fields -->
+    <div id="feedbackContainer"></div>
 </body>
 </html>

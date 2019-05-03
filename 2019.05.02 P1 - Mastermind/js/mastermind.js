@@ -1,4 +1,6 @@
-var secretCode, userGuess, whiteCount, blackCount, secretCodeLength, digitRange;
+// don't forget to add the number to the color in the feedback rows
+
+var secretCodeLength, digitRange, secretCode, userGuess, whiteCount, blackCount, turn;
 
 secretCodeLength = 4;
 digitRange = 4;
@@ -11,7 +13,8 @@ $('#resetGame').click(handleReset);
 
 function initializeGame() {
     generateCode();
-    // console.log('sc ' + secretCode);
+    console.log('sc ' + secretCode);
+    turn = 0;
 }
 
 // 3. code generator - done
@@ -25,13 +28,16 @@ function generateCode() {
 }
 
 function handleSubmit() {
+    turn++;
     userGuess = getGuess();
-    blackCount = getBlackCount(secretCode, userGuess);
-    whiteCount = getWhiteCount(blackCount);
+    blackCount = getBlackCount();
+    whiteCount = getWhiteCount();
+    createNewFeedbackRow();
+    appendFeedbackToRow();
     // console.log('render ug ' + userGuess);
     // console.log('render bc ' + blackCount);
     // console.log('render wc ' + whiteCount);
-    render();
+    // render();
 }
 
 function handleReset() {
@@ -48,7 +54,7 @@ function getGuess() {
     return guess;
 }
 
-function getBlackCount(secretCode, userGuess) {
+function getBlackCount() {
     var blackCount = 0;
     for (var i = 0; i < secretCode.length; i++) {
         if (secretCode[i] == userGuess[i]) {
@@ -61,7 +67,7 @@ function getBlackCount(secretCode, userGuess) {
     return blackCount;
 }
 
-function getWhiteCount(blackCount) {
+function getWhiteCount() {
     var code = secretCode.slice();
     // console.log('code ' + code);
     // console.log('ug in gwc ' + userGuess);
@@ -78,9 +84,84 @@ function getWhiteCount(blackCount) {
     return whiteCount - blackCount;
 }
 
-function render() {
+// function render() {
     
+// }
+
+function createNewFeedbackRow() {
+    $('#feedbackContainer').append(`
+        <div class="turnFeedback tf${turn}">
+            <div class="guessContainer gc${turn}"></div>
+            <div class="spacer"></div>
+            <div class="dotContainer dc${turn}">
+                <div class="blackContainer bc${turn}"></div>
+                <div class="whiteContainer wc${turn}"></div>
+            </div>
+        </div>
+    `)
 }
+
+function appendFeedbackToRow() {
+    appendGuess();
+    appendBlackDots();
+    appendWhiteDots();
+}
+
+function appendGuess() {
+    for (var i = 0; i < userGuess.length; i++) {
+        $(`.gc${turn}`).append(`<div class="guessPeg${userGuess[i]}"></div>`);
+    }
+}
+
+function appendBlackDots() {
+    for (var i = 0; i < blackCount; i++) {
+        $(`.bc${turn}`).append(`<div class="black dot"></div>`);
+    }
+}
+function appendWhiteDots() {
+    for (var i = 0; i < whiteCount; i++) {
+        $(`.wc${turn}`).append(`<div class="white dot"></div>`);
+    }
+}
+
+initializeGame();
+
+// function appendWhiteDots() {
+
+// }
+
+// function append
+
+
+//         <div class="turnFeedback tf${turn}">
+//             <div class="guessContainer gc${turn}">
+//                 <div class="guessPeg${userGuess[0]}"></div>
+//                 <div class="guessPeg${userGuess[1]}"></div>
+//                 <div class="guessPeg${userGuess[2]}"></div>
+//                 <div class="guessPeg${userGuess[3]}"></div>
+//             </div>
+//             <div class="spacer"></div>
+//             <div class="dotContainer dc${turn}">
+                
+                    
+//                 <div class="whiteContainer wc${turn}"></div>
+                    
+//             </div>
+//         </div>
+//     `)
+// }
+
+// function appendFeedbackContainer() {
+//     $('#feedbackContainer').append(`
+//         <div class="guessContainer gc${turn}"></div>
+//         <div class="spacer"></div>
+//         <div class="dotContainer dc${turn}">
+//             <div class="blackContainer bc${turn}"></div>
+//             <div class="whiteContainer wc${turn}"></div>
+//         </div>
+//     `)
+// }
+
 
 
 // 5. function to iterate through guess and code to determine how many elements the two share in the correct position (this will generate the black dot count)
@@ -101,5 +182,3 @@ function render() {
 // 10. some message of congratulations if correct code guessed 
 
 // generateCode();
-
-initializeGame();
