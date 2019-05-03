@@ -1,7 +1,6 @@
 // variables I'll need:
 var secretCode, userGuess, whiteCount, blackCount, codeLength, digitRange
 
-
 // 1. click handlers and accompanying functions to record user input and reset the game
 // $('#submitGuess').click(getGuess);
 $('#submitGuess').click(render);
@@ -10,6 +9,8 @@ $('#submitGuess').click(render);
 
 function initializeGame() {
     generateCode();
+    console.log('sc ' + secretCode);
+    console.log('ug ' + userGuess);
 }
 
 function render() {
@@ -28,22 +29,31 @@ function generateCode() {
 
 // guess recorder
 function getGuess() {
-    guess = [];
+    var guess = [];
     for (var num = 1; num < 5; num++) {
         guess.push(parseInt($('#input' + num).val()));
     }
 
+    console.log('guess ' + guess);
     return guess;
 }
 
 // 4. function to iterate through guess and code to determine how many elements the two share (this will set the initial white dot count)
 function getWhiteCount(blackCount) {
+    var code = secretCode;
+    console.log('code ' + code);
+    console.log('ug in gwc ' + userGuess);
+
     var whiteCount = 0;
         for (var i = 0; i < secretCode.length; i++) {
-            secretCode[i] == userGuess[i] ? whiteCount++ : whiteCount = whiteCount;
+            if (userGuess[i] in code) {
+                whiteCount++;
+                code.splice(code.indexOf(userGuess));
+            }
         }
-        
-    return whiteCount
+
+    console.log('wc' + whiteCount);
+    return whiteCount - blackCount;
 }
 
 
@@ -53,8 +63,9 @@ function getBlackCount(secretCode, userGuess) {
         for (var i = 0; i < secretCode.length; i++) {
             secretCode[i] == userGuess[i] ? blackCount++ : blackCount = blackCount;
         }
-
-    return blackCount
+    
+    console.log('bc ' + blackCount);
+    return blackCount;
 }
 
 // 6. function to subtract black dot count from white dot count (this will set the final white dot count)
@@ -73,3 +84,5 @@ function getBlackCount(secretCode, userGuess) {
 // 10. some message of congratulations if correct code guessed 
 
 // generateCode();
+
+initializeGame();
