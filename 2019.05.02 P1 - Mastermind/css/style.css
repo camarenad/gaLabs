@@ -10,3 +10,24 @@ input {
 .previousGuesses {
     display: flex;
 }
+
+.sampleGuessBox1 {
+    height: 40px;
+    width: 40px;
+    background-color: red;
+}
+.sampleGuessBox2 {
+    height: 40px;
+    width: 40px;
+    background-color: orange;
+}
+.sampleGuessBox3 {
+    height: 40px;
+    width: 40px;
+    background-color: yellow;
+}
+.sampleGuessBox4 {
+    height: 40px;
+    width: 40px;
+    background-color: green;
+}
