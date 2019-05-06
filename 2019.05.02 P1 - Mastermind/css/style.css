@@ -4,12 +4,16 @@ input {
     text-align: center;
 }
 
+.ipc, .guessPeg, .mysteryPeg {
+    margin: 1px;
+}
+
 #feedbackContainer{
     display: flex;
     flex-direction: column;
 }
 
-.inputContainer, .guessContainer, .blackContainer, .whiteContainer, .turnFeedback {
+#inputContainer, #secretCodeContainer, .guessContainer, .blackContainer, .whiteContainer, .turnFeedback {
     display: flex;
     flex-direction: row;
 }
@@ -18,6 +22,11 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.mysteryPeg {
+    background-color: black;
+    color: white;
 }
 
 .spacer {
@@ -40,9 +49,24 @@ input {
     background-color: black;
 }
 
-.guessContainer > div {
+.guessContainer > div, .mysteryPeg {
     height: 40px;
     width: 40px;
+}
+
+.guessPeg, .mysteryPeg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 26px;
+    color: white;
+    border: 1px #999999 solid;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 
 .guessPeg1 {
