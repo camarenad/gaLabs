@@ -1,17 +1,24 @@
 // don't forget to add the number to the color in the feedback rows
-
 var secretCodeLength, digitRange, secretCode, userGuess, whiteCount, blackCount, turn;
 
+function run() {
 
-secretCodeLength = 4;
-digitRange = 4;
+    secretCodeLength = 4;
+    digitRange = 4;
 
+    for (var i = 1; i < 10; i++) {
+        $('#chooseSecretCodeLength').append(`<option value="${i}">${i}</option>`);
+        $('#chooseDigitRange').append(`<option value="${i}">${i}</option>`);
+        // var selected = (i == codeLength) ? "selected" : "";
+    }
+
+    initializeGame();
+}
 // var codeCap = $('#codeLength').val();
 
-$('#submitGuess').click(handleSubmit);
-$('#resetGame').click(handleReset);
-
 // 2. error handling for invalid inputs (e.g. blank fields or non numeric characters)
+
+// don't do post colelction validation. validate each individual input in real time; feedback via css: color boxes red and disable submit button until guess is valid
 
 function initializeGame() {
     generateSecretCode();
@@ -19,19 +26,17 @@ function initializeGame() {
     generateInputFields();
     appendSecretCode();
     clearFeedback();
-    initializeKeyListeners();
+    initializeEventListeners();
     $('#input1').focus();
     turn = 0;
 }
 
 function generateSecretCode() {
-    console.log('gsc sc length ' + secretCodeLength);
-    console.log('gsc digit range ' + digitRange);
     secretCode = [];
     for (var num = 0; num < secretCodeLength; num++) {
         secretCode.push(Math.floor(Math.random() * digitRange) + 1);
     }
-    
+
     return secretCode;
 }
 
@@ -39,13 +44,22 @@ function generateInputFields() {
     $('#inputContainer').html('');
 
     for (var i = 1; i <= secretCodeLength; i++) {
-        $('#inputContainer').append(`<input id="input${i}" type="text" minlength="1" maxlength="1" class="userInput">`);
+        $('#inputContainer').append(`<input id="input${i}" type="text" minlength="1" maxlength="1" pattern="[1-${digitRange}]" max="${digitRange}" class="userInput">`);
+    }
+}
+
+function appendSecretCode() {
+    $('#secretCodeContainer').html('');
+
+    for (var i = 0; i < secretCodeLength; i++) {
+        $('#secretCodeContainer').append('<div class="mysteryPeg">?</div>');
     }
 }
 
 function handleSubmit() {
-    turn++;
     userGuess = getGuess();
+    // validateUserInput();
+    turn++;
     blackCount = getBlackCount();
     whiteCount = getWhiteCount();
     render();
@@ -61,16 +75,14 @@ function render() {
     createNewFeedbackRow();
     appendFeedbackToRow();
     generateInputFields();
-    initializeKeyListeners();
+    initializeEventListeners();
     $('#input1').focus();
 }
 
 function getGuess() {
     var guess = [];
-    for (var num = 1; num < 5; num++) {
-        // if ($('#input' + num).val().keyCode == 49) {
-            guess.push(parseInt($('#input' + num).val()));
-        // }
+    for (var num = 1; num <= secretCodeLength; num++) {
+        guess.push(parseInt($('#input' + num).val()));
     }
 
     return guess;
@@ -120,15 +132,9 @@ function appendFeedbackToRow() {
     appendWhiteDots();
 }
 
-function appendSecretCode() {
-    $('#secretCodeContainer').html('');
-
-    for (var i = 0; i < secretCodeLength; i++) {
-        $('#secretCodeContainer').append('<div class="mysteryPeg">?</div>');
-    }
-}
-
 function appendGuess() {
+    console.log(userGuess)
+    console.log(userGuess.length)
     for (var i = 0; i < secretCodeLength; i++) {
         $(`.gc${turn}`).append(`<div class="guessPeg guessPeg${userGuess[i]}">${userGuess[i]}</div>`);
     }
@@ -139,6 +145,7 @@ function appendBlackDots() {
         $(`.bc${turn}`).append(`<div class="black dot"></div>`);
     }
 }
+
 function appendWhiteDots() {
     for (var i = 0; i < whiteCount; i++) {
         $(`.wc${turn}`).append(`<div class="white dot"></div>`);
@@ -149,20 +156,32 @@ function clearFeedback() {
     $('#feedbackContainer').html('');
 }
 
-initializeGame();
+function initializeEventListeners() {
+    // add button listeners
 
-function initializeKeyListeners() {
+    $('#submitGuess').attr('disabled','disabled');
+    $('#submitGuess').click(handleSubmit);
+    $('#resetGame').click(handleReset);
+
+    // advance pointer to next input field once current field has been populated
+
     $('.userInput').keyup(function() {
         if ($(this).val()) {
             $(this).next().focus();
         }
     });
-    
+
+    // move pointer to previous input field when 'delete' is pressed in current field
+
     $('.userInput').keyup(function(event) {
-        if (event.keyCode == 8) {
-            $(this).prev().focus();
-        }
+        // if () {
+            if (event.keyCode == 8) {
+                $(this).prev().focus();
+            }
+        // }
     });
+
+    // add 'submit' functionality to 'enter' key
 
     $('.userInput').keyup(function(event) {
         if (event.keyCode == 13) {
@@ -170,18 +189,28 @@ function initializeKeyListeners() {
         }
     });
 
-    // $('.userInput').onblur(function() {
-    //     if ($(this).val() == 'a') { // not email
-    //         alert('huh');
-    //     //   input.classList.add('invalid');
-    //     //   error.innerHTML = 'Please enter a correct email.'
-    //     }
-    // });
+    // add css feedback for input validation: box with invalid entry turns red upon entry and is autocleared on refocus
+
+    var inputs = $('.userInput')
+    
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('focus', function() {
+            if (!this.validity.valid) {
+                this.value = '';
+            }
+        }, false);
+    }
 }
 
-for (var i = 1; i < 10; i++) {
-    $('#chooseSecretCodeLength').append(`<option value="${i}">${i}</option>`);
-    $('#chooseDigitRange').append(`<option value="${i}">${i}</option>`);
-    // var selected = (i == codeLength) ? "selected" : "";
+function validateUserInput() {
+    var validGuesses =  /^[1-4]+$/;
+    
+    for (var i = 0; i < userGuess.length; i++) {
+        if (!validGuesses.test(userGuess[i])) {
+            console.log('oy, whats all this then?!')
+            return false;
+        }
+    }
 }
 
+run();
