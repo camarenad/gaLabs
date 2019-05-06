@@ -2,17 +2,19 @@
 
 var secretCodeLength, digitRange, secretCode, userGuess, whiteCount, blackCount, turn;
 
+
 secretCodeLength = 4;
 digitRange = 4;
 
+// var codeCap = $('#codeLength').val();
 
 $('#submitGuess').click(handleSubmit);
-$('#resetGame').click(initializeGame);
+$('#resetGame').click(handleReset);
 
 // 2. error handling for invalid inputs (e.g. blank fields or non numeric characters)
 
 function initializeGame() {
-    generateCode();
+    generateSecretCode();
     console.log('sc ' + secretCode);
     generateInputFields();
     appendSecretCode();
@@ -22,7 +24,9 @@ function initializeGame() {
     turn = 0;
 }
 
-function generateCode() {
+function generateSecretCode() {
+    console.log('gsc sc length ' + secretCodeLength);
+    console.log('gsc digit range ' + digitRange);
     secretCode = [];
     for (var num = 0; num < secretCodeLength; num++) {
         secretCode.push(Math.floor(Math.random() * digitRange) + 1);
@@ -47,15 +51,26 @@ function handleSubmit() {
     render();
 }
 
+function handleReset() {
+    secretCodeLength = parseInt($('#chooseSecretCodeLength').val());
+    digitRange = parseInt($('#chooseDigitRange').val());
+    initializeGame();
+}
+
 function render() {
     createNewFeedbackRow();
     appendFeedbackToRow();
+    generateInputFields();
+    initializeKeyListeners();
+    $('#input1').focus();
 }
 
 function getGuess() {
     var guess = [];
     for (var num = 1; num < 5; num++) {
-        guess.push(parseInt($('#input' + num).val()));
+        // if ($('#input' + num).val().keyCode == 49) {
+            guess.push(parseInt($('#input' + num).val()));
+        // }
     }
 
     return guess;
@@ -149,12 +164,24 @@ function initializeKeyListeners() {
         }
     });
 
-    // ($('.userInput').onblur = function() {
-    //     if (!input.value.includes('@')) { // not email
-    //       input.classList.add('invalid');
-    //       error.innerHTML = 'Please enter a correct email.'
-    //     }
-    //   };
+    $('.userInput').keyup(function(event) {
+        if (event.keyCode == 13) {
+            handleSubmit();
+        }
+    });
 
+    // $('.userInput').onblur(function() {
+    //     if ($(this).val() == 'a') { // not email
+    //         alert('huh');
+    //     //   input.classList.add('invalid');
+    //     //   error.innerHTML = 'Please enter a correct email.'
+    //     }
+    // });
+}
+
+for (var i = 1; i < 10; i++) {
+    $('#chooseSecretCodeLength').append(`<option value="${i}">${i}</option>`);
+    $('#chooseDigitRange').append(`<option value="${i}">${i}</option>`);
+    // var selected = (i == codeLength) ? "selected" : "";
 }
 
