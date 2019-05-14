@@ -16,6 +16,10 @@ app.get('/home', function(req, res) {
     res.render('home');
 });
 
+app.get('/about', function(req, res) {
+    res.render('about');
+});
+
 app.get('/recipes', function(req, res) {
     res.render('recipes/index', {
         recipes: recipesDb.getAll()
