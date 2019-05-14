@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= dish.name %> </title>
+    <title> <%= dish.name %> </title>
 </head>
 <body>
-    <% include partials/nav.ejs %>
+    <%- include('../partials/nav') %>
     <h1>Who's ready for some <%= dish.name %>?!</h1>
     <h2>Ingredients</h2>
     <ul>

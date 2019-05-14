@@ -30,6 +30,6 @@ app.get('/recipes/:id', function(req, res) {
     res.render('recipes/recipe', {dish: recipesDb.getOne(req.params.id)});
 });
 
-app.listen(3000, function() {
-    console.log('Listening on port 3000.');
+app.listen(3001, function() {
+    console.log('Listening on port 3001.');
 });
