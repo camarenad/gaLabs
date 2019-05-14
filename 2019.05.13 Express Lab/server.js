@@ -5,7 +5,6 @@ const recipesDb = require('./data/recipesDb');
 
 app.set('view engine', 'ejs');
 
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -24,7 +23,7 @@ app.get('/recipes', function(req, res) {
 });
 
 app.get('/recipes/:id', function(req, res) {
-    res.render('recipe', {dish: recipesDb.getOne(req.params.id)});
+    res.render('recipes/recipe', {dish: recipesDb.getOne(req.params.id)});
 });
 
 app.listen(3000, function() {
