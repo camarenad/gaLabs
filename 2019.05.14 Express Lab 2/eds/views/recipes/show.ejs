@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/assets/style.css" rel="stylesheet" type="text/css" />
+    <title> <%= dish.name %> </title>
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <h1>Who's ready for some <%= dish.name %>?!</h1>
+    <h2>Ingredients</h2>
+    <ul>
+        <% dish.ingredients.forEach(function(r) { %>
+        <li>
+            <%= r %>
+        </li>
+        <% }); %>
+    </ul>
+    <h2>Instructions</h2>
+    <ol>
+        <% dish.instructions.forEach(function(r) { %>
+        <li>
+            <%= r %>
+        </li>
+        <% }); %>
+    </ol>
+    <br>
+    <a href="<%= dish.extraInfo %>" target="_blank">Recommended Reading</a>
+    
+</body>
+</html>
