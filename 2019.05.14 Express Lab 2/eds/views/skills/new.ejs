@@ -8,7 +8,12 @@
     <title>Skills</title>
 </head>
 <body>
-    <%- include('partials/nav') %>
-    <h1>I'm the home page</h1>
+    <%- include('../partials/nav') %>
+    <h1>Add a New Skill</h1>
+    <form id="new-skill" method="post" action="/new">
+        <label for="dish">What skill do you want to add?</label>
+        <input type="text" name="dish">
+        <input type="submit" value="submit" />
+    </form>
 </body>
 </html>
