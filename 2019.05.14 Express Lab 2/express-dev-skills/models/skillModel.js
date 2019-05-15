@@ -14,7 +14,7 @@ var skills = [
     {id: 12, skill: 'AJAX', done: false},
     {id: 13, skill: 'ReactJS', done: false},
 ];
-
+  
 module.exports = {
     getAll,
     getOne,
@@ -24,21 +24,21 @@ module.exports = {
 };
   
 function update(id, skill) {
-    skills[id] = skill;
+    skills.splice(id, 1, skill);
 }
-
+  
 function deleteOne(id) {
     skills.splice(id, 1);
 }
-
+  
 function create(skill) {
     skills.push(skill);
 }
-
+  
 function getOne(id) {
     return skills[id];
 }
-
+  
 function getAll() {
     return skills;
 }

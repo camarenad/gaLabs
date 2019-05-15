@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="/assets/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../stylesheets/style.css" rel="stylesheet" type="text/css" />
     <title>Express To-Do</title>
 </head>
 <body>
-    <%- include('../partials/nav') %>
     <h1>Edit Skill</h1>
     <form method="POST" action="/skills/<%= skillId %>?_method=PUT">
         <input type="text" name="skill"

@@ -1,8 +1,20 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #6E7E8E;
+  font-family: Verdana;
+  color: #eee;
+  padding: 30px;
+  }
+
+h1 {
+  font-size: 40px; 
+  text-transform: uppercase; 
+  letter-spacing: 2px;
 }
 
-a {
-  color: #00B7FF;
+p {
+  font-size: 16px;
+}
+
+li {
+  list-style: none;
 }
