@@ -13,6 +13,7 @@ module.exports = {
 function update(req, res) {
   req.body.done = req.body.done === 'on';
   Skill.update(req.params.id, req.body);
+
   res.redirect('/skills');
 }
 
@@ -29,7 +30,6 @@ function deleteSkill(req, res) {
 }
 
 function create(req, res) {
-  console.log(req.body);
   req.body.done = false;
   Skill.create(req.body);
   res.redirect('/skills');
