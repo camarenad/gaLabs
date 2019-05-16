@@ -26,11 +26,9 @@ function create(req, res) {
 function flights(req, res) {
     var sort = {};
     var sortBy = req.query.sortBy;
-    sort[sortBy] = -1
+    sort[sortBy] = 1;
     var flights = Flight.find({}).sort( sort ).exec(function(err, flights) {
-        res.render('flights/index', {
-            flights
-        });
+        res.render('flights/index', {flights});
     });
 }
 
