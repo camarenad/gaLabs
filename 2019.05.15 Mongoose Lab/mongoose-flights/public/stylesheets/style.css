@@ -1,0 +1,38 @@
+body {
+  background-color: #6E7E8E;
+  font-family: Verdana;
+  color: #eee;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 40px; 
+  text-transform: uppercase; 
+  letter-spacing: 2px;
+}
+
+p {
+  font-size: 16px;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+table {
+  font-size: 14px;
+}
+
+.flightNumber {
+  text-align: center;
+}
