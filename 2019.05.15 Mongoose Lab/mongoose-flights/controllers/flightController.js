@@ -23,22 +23,11 @@ function create(req, res) {
     });
 }
 
-// function flights(req, res) {
-//     console.log(req.query.sortBy);
-//     var flights = Flight.find().sort( { airline : -1 } );
-//     console.log(flights)
-//     function(err, flights) {
-        
-//         res.render('flights/index', {
-//             flights
-//         });
-//     });
-// }
-
 function flights(req, res) {
-    console.log(req.query.sortBy);
-    Flight.find({}, function(err, flights) {
-        
+    var sort = {};
+    var sortBy = req.query.sortBy;
+    sort[sortBy] = -1
+    var flights = Flight.find({}).sort( sort ).exec(function(err, flights) {
         res.render('flights/index', {
             flights
         });
