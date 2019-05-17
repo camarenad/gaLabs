@@ -1,0 +1,65 @@
+<%- include('../partials/nav') %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <title>Mongoose Flights</title>
+</head>
+
+<body>
+    <section id="show-page">
+        <div>Airline: <%= flight.airline %></div>
+        <div>Flight Number: <%= flight.flightNumber %></div>
+        <div>Departure Time: <%= flight.departs %></div>
+        <div>Airport: <%= flight.airport %></div>
+    </section>
+    <br><br>
+    <!-- <a href="/flights/edit">Edit</a> -->
+
+    <br><br>
+    <h2>Reviews</h2>
+    <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+        <label>Destination:
+            <select name="airport">
+                <option value="null"></option>
+                <option value="AUS">AUS</option>
+                <option value="DAL">DAL</option>
+                <option value="LAX">LAX</option>
+                <option value="SEA">SEA</option>
+            </select><br>
+        </label>
+        <label>Arrival Date:
+            <input type="datetime-local" name="arrival" value="2018-06-12T19:30">
+        </label><br>
+        <input type="submit" value="Add Destination">
+    </form>
+
+    <% if (flight.destinations.length) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Arrival Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% flight.destinations.forEach(function(f) { %>
+            <tr>
+                <td><%= f.airport %></td>
+                <td><%= f.arrival %></td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <% } else { %>
+    <h5>No Destinations Yet</h5>
+    <% } %>
+
+</body>
+
+</html>

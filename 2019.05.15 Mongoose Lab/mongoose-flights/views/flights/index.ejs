@@ -16,9 +16,11 @@
     <table>
         <thead>
             <tr>
-                <th><a href="/flights?sortBy=airline">Airline</a></th>
-                <th><a href="/flights?sortBy=flightNumber">Flight Number</a></th>
-                <th><a href="/flights?sortBy=departs">Departure Time</a></th>
+                <th>Airline<a href="/flights?sortBy=airline&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=airline&sortDir=-1"> <img src="public/images/sortDown.png" ></a></th>
+                <th>Flight Number<a href="/flights?sortBy=flightNumber&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=flightNumber&sortDir=-1"><img src="/public/images/sortDown.png" ></a></th>
+                <th>Departure Time<a href="/flights?sortBy=departs&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=departs&sortDir=-1"><img src="/public/images/sortDown.png" ></a></th>
+                <th>Airport<a href="/flights?sortBy=airport&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=airport&sortDir=-1"><img src="/public/images/sortDown.png" ></a></th>
+                <th>Flight Details</th> 
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -27,6 +29,8 @@
                 <td class="airline"><%= f.airline %></td>
                 <td class="flightNumber"><%= f.flightNumber %></td>
                 <td><%= f.departs %></td>
+                <td><%= f.airport %></td>
+                <td><a href="/flights/<%= f._id %>"><img src="/public/images/info.png"></a></td>
             </tr>
             <% }) %>
         </tbody>

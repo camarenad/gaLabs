@@ -1,3 +1,5 @@
+<%- include('../partials/nav') %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,19 +12,20 @@
 </head>
 
 <body>
-    <%- include('../partials/nav') %>
-    <h2>Enter a New Flight</h2>
-    <form action="/flights" method="POST">
+    <h2>Edit Your Flight</h2>
+    <form method="POST" action="/flights/<%= flightId %>?_method=PUT">
+        <input type="text" name="flight"
+            autocomplete="off"
+            value="<%= flight.flight %>>
         <label>Airline:
         </label>
         <select name="airline">
-            <option value="null"></option>
             <option value="American">American</option>
             <option value="Southwest">Southwest</option>
             <option value="United">United</option>
         </select><br>
         <label>Flight Number:
-            <input type="number" name="flightNumber">
+            <input type="number" name="flightNumber" >
         </label><br>
         <label>Departure Date
             <input type="datetime-local" name="departs" value="2018-06-12T19:30">
@@ -36,7 +39,6 @@
                 <option value="SEA">SEA</option>
             </select><br>
         </label>
-        
         <input type="submit" value="Add Flight">
     </form>
 </body>
