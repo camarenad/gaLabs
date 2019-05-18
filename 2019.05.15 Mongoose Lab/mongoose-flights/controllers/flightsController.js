@@ -1,4 +1,5 @@
 var Flight = require('../models/flightModel');
+var Ticket = require('../models/ticketModel');
 
 module.exports = {
     new: newFlight,
@@ -42,12 +43,25 @@ function flights(req, res) {
 }
 
 function show(req, res) {
-    var flights = Flight.findOne({ _id: req.params.id }, function (err, flight) {
-        console.log(flight)
-        // console.log(_id)
-        res.render('flights/show', { flight });
+    Flight.findById(req.params.id).populate('cast').exec(function (err, flight) {
+        // Ticket.find({}).where('_id').nin(flight.cast)
+        Ticket.find({ _id: { $nin: flight.cast } }).exec(function (err, tickets) {
+            console.log(tickets);
+            res.render('flights/show', {
+                title: 'Flight Detail', flight, tickets
+            });
+        });
     });
 }
+
+// function show(req, res) {
+//     var flights = Flight.findOne({ _id: req.params.id }, function (err, flight) {
+//         var ticket = Ticket.
+//         console.log(flight)
+//             // console.log(_id)
+//             res.render('flights/show', { flight });
+//     });
+// }
 
 function edit(req, res) {
     res.render('flights/:id/edit')
