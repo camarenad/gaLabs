@@ -1,0 +1,8 @@
+<select name="airport">
+    <% flight.schema.path('airport').enumValues.forEach(function(a) { %>
+    <% if(flight.airport !== a) { %>
+    <% flight.destinations.forEach(function(d) { %>
+    <% if(d.airport !== a) { %>
+    <option value="<%= a %>"><%= a %></option>
+    <% }})}}) %>
+</select>

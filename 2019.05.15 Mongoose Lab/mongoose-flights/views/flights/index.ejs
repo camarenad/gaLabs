@@ -25,8 +25,8 @@
         </thead>
         <tbody id="tableBody">
             <% flights.forEach(function(f) { %>
-            <tr>
-                <td class="airline"><%= f.airline %></td>
+            <tr <%- flights.departs < new Date() ? 'class="passed-flights"' : '' %>>
+                <td <%= f.airline %></td>
                 <td class="flightNumber"><%= f.flightNumber %></td>
                 <td><%= f.departs %></td>
                 <td><%= f.airport %></td>

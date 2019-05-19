@@ -1,12 +1,22 @@
 var Flight = require('../models/flightModel');
 var Ticket = require('../models/ticketModel');
 
+function flights(req, res) {
+    var sort = {};
+    var sortBy = req.query.sortBy;
+    var sortDir = req.query.sortDir;
+    sort[sortBy] = 1 * sortDir;
+    var flights = Flight.find({}).sort(sort).exec(function (err, flights) {
+        res.render('flights/index', { flights });
+    });
+}
+
 module.exports = {
     new: newFlight,
     create,
     flights,
     show,
-    update
+    delete: deleteTicket
 }
 
 function newFlight(req, res) {
@@ -25,20 +35,9 @@ function create(req, res) {
     });
 }
 
-function flights(req, res) {
-    var sort = {};
-    var sortBy = req.query.sortBy;
-    var sortDir = req.query.sortDir;
-    sort[sortBy] = 1 * sortDir;
-    var flights = Flight.find({}).sort(sort).exec(function (err, flights) {
-        res.render('flights/index', { flights });
-    });
-}
-
 function show(req, res) {
-    Flight.findById(req.params.id).populate('tickets').exec(function (err, flight) {
+    Flight.findById(req.params.flightId).populate('tickets').exec(function (err, flight) {
         Ticket.find({ _id: { $nin: flight.tickets } }).exec(function (err, tickets) {
-            console.log('tickets');
             res.render('flights/show', {
                 title: 'Flight Detail', flight, tickets
             });
@@ -46,7 +45,8 @@ function show(req, res) {
     });
 }
 
-function update(req, res) {
-    Flight.update(req.params.id, req.body);
-    res.redirect('flights');
+function deleteTicket(req, res) {
+    Ticket.findByIdAndDelete(req.params.ticketId, function(err) {
+        res.redirect(`/flights/${req.params.flightId}`);
+    });
 }

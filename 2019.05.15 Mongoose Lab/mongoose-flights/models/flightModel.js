@@ -21,7 +21,7 @@ var flightSchema = new Schema({
     },
     departs: {
         type: Date,
-        // default: 
+        default: () => new Date(new Date().setFullYear(new Date().getFullYear() + 1))
     },
     airport: {
         type: String,
