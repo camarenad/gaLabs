@@ -60,28 +60,29 @@
     <% } %>
 
     <% if (tickets.length) { %>
-        <table>
-            <thead>
-                <tr>
-                    <th>Assigned Seat</th>
-                    <th>Ticket Price</th>
-                    <th>Flight</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% flight.destinations.forEach(function(f) { %>
-                <tr>
-                    <td><%= t.seat %></td>
-                    <td><%= t.price %></td>
-                    <td><%= t.flight %></td>
-                </tr>
-                <% }); %>
-            </tbody>
-        </table>
-        <% } else { %>
-        <h5>No Tickets Yet</h5>
-        <% } %>
+    <table>
+        <thead>
+            <tr>
+                <th>Assigned Seat</th>
+                <th>Ticket Price</th>
+                <th>Flight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% flight.tickets.forEach(function(t) { %>
+            <tr>
+                <td><%= t.seat %></td>
+                <td><%= t.price %></td>
+                <td><%= t.flight %></td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <% } else { %>
+    <h5>No Tickets Yet</h5>
+    <% } %>
 
+    <a href="/flights/<%= flight._id %>/tickets/new">Add Ticket</a>
 </body>
 
 </html>

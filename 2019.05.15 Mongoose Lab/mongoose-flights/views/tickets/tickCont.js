@@ -1,9 +1,9 @@
-var Ticket = require('../models/ticketModel');
-var Flight = require('../models/flightModel');
+var Ticket = require('../models/ticket');
+var Flight = require('../models/flight')
 
 module.exports = {
     new: newTicket,
-    create
+    create,
 };
 
 function newTicket(req, res) {
@@ -16,7 +16,6 @@ function newTicket(req, res) {
 }
 
 function create(req, res) {
-    console.log('creating ticket')
     var ticket = new Ticket(req.body);
     ticket.save(function (err) {
         err ?
