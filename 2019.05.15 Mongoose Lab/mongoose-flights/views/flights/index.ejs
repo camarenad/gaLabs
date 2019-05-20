@@ -13,16 +13,16 @@
         rel="stylesheet">
 </head>
 
-
-
 <%- include('../partials/nav') %>
 
 <body>
     <div class="pageTitle">
+    </div>
+    <div class="flightBoardContainer">
         <h2>All Flights</h2>
         <table class="flightBoard">
             <thead>
-                <tr id="flightHeader">
+                <tr class="tableHeader">
                     <th>Airline
                         <a class="asc" href="/flights?sortBy=airline&sortDir=1">&#9650</a>
                         <a class="desc" href="/flights?sortBy=airline&sortDir=-1">&#9660</a>
@@ -69,7 +69,6 @@
         </table><br><br>
         <button class="board" onclick="window.location.href = '/flights/new';">Add Flight</button>
     </div>
-
 </body>
 
 </html>

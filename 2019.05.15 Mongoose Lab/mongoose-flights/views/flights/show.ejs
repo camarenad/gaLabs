@@ -42,13 +42,13 @@
         <label>Arrival Date:
             <input type="datetime-local" name="arrival">
         </label><br>
-        <input type="submit" value="Add Destination">
+        <input type="submit" value="Add Destination" onClick="checkFields()">
     </form>
 
     <% if (flight.destinations.length) { %>
     <table>
         <thead>
-            <tr>
+            <tr class="tableHeader">
                 <th>Destination
                     <a class="asc" href="/flights/<%= flight._id %>/?sortBy=airport&sortDir=1">&#9650</a>
                     <a class="desc" href="/flights/<%= flight._id %>/?sortBy=airport&sortDir=-1">&#9660</a>
@@ -79,8 +79,11 @@
 
     <table>
         <thead>
-            <th>Seat</th>
-            <th>Price</th>
+            <tr class="tableHeader">
+                <th>Seat</th>
+                <th>Price</th>
+                <th>Delete</th>
+            </tr>
         </thead>
         <tbody>
             <% if (flight.tickets.length) { %>
@@ -92,9 +95,11 @@
                     <td>
                         <%= t.price %>
                     </td>
-                    <form action="/flights/<%= flight._id %>/<%= t._id %>?_method=DELETE" method="POST">
-                        <button type="submit">X</button>
-                    </form>
+                    <td>
+                        <form action="/flights/<%= flight._id %>/<%= t._id %>?_method=DELETE" method="POST">
+                            <button type="submit">X</button>
+                        </form>
+                    </td>
                 </tr>
             <% })} %>
     </table>
@@ -102,7 +107,7 @@
 
 
 
-    <a href="/flights/<%= flight._id %>/tickets/new">Add Ticket</a>
+    <a href="/flights/<%= flight._id %>/tickets/new"><button>Add Ticket</button></a>
 </body>
 
 </html>

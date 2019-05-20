@@ -21,7 +21,7 @@
             <option value="United">United</option>
         </select><br>
             <label>Flight Number:
-            <input type="number" name="flightNumber">
+            <input type="number" name="flightNumber" id="flightNumber">
         </label><br>
             <label>Departs:
             <input type="datetime-local" name="departs" default="<% new Date(new Date().setFullYear(new Date().getFullYear() + 1)) %>">
@@ -35,7 +35,7 @@
             </select><br>
         </label>
 
-            <input type="submit" value="Add Flight">
+            <input type="submit" id="addFlight" value="Add Flight">
         </form>
 </body>
 

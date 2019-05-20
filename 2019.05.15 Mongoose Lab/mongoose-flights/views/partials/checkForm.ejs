@@ -1,0 +1,21 @@
+<script type="text/javascript">
+    function checkForm() {
+        console.log('check form')
+        var f = document.getElementById('flightNumber').value;
+        window.focus(function () {
+            if (f == '') {
+                document.getElementById('addFlight').attr('disabled','disabled');
+            } else {
+                document.getElementById('addFlight').removeAttr('disabled');
+            }
+        });
+
+        var f;
+        f = document.getElementById('flightNumber').value;
+        if (f == "") {
+            alert("Enter a Valid Flight Number");
+        };
+    }
+
+    document.getElementById('flightNumber').on('keyup', checkForm);
+</script>
