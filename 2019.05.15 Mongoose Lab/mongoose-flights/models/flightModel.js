@@ -6,7 +6,10 @@ var destinationSchema = new Schema({
         type: String,
         enum: ['AUS', 'DAL', 'LAX', 'SEA']
     },
-    arrival: Date
+    arrival: {
+        type: Date,
+        default: () => new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+    }
 });
 
 var flightSchema = new Schema({
@@ -28,9 +31,8 @@ var flightSchema = new Schema({
         enum: ['AUS', 'DAL', 'LAX', 'SEA']
     },
     destinations: [destinationSchema],
-    tickets: [{type: Schema.Types.ObjectId, ref: 'Ticket'}]
-},
-{
+    tickets: [{ type: Schema.Types.ObjectId, ref: 'Ticket' }]
+}, {
     timestamps: true
 });
 

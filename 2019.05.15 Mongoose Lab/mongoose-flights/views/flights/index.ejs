@@ -6,38 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <title>Flights!</title>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700|Raleway|Poiret+One|PT+Mono&display=swap"
+        rel="stylesheet">
 </head>
 
+
+
+<%- include('../partials/nav') %>
+
 <body>
-    <%- include('../partials/nav') %>
-    <h2>All Flights</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Airline<a href="/flights?sortBy=airline&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=airline&sortDir=-1"> <img src="public/images/sortDown.png" ></a></th>
-                <th>Flight Number<a href="/flights?sortBy=flightNumber&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=flightNumber&sortDir=-1"><img src="/public/images/sortDown.png" ></a></th>
-                <th>Departure Time<a href="/flights?sortBy=departs&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=departs&sortDir=-1"><img src="/public/images/sortDown.png" ></a></th>
-                <th>Airport<a href="/flights?sortBy=airport&sortDir=1"><img src="/public/images/sortUp.png" ></a><a href="/flights?sortBy=airport&sortDir=-1"><img src="/public/images/sortDown.png" ></a></th>
-                <th>Flight Details</th> 
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            <% flights.forEach(function(f) { %>
-            <tr <%- flights.departs < new Date() ? 'class="passed-flights"' : '' %>>
-                <td <%= f.airline %></td>
-                <td class="flightNumber"><%= f.flightNumber %></td>
-                <td><%= f.departs %></td>
-                <td><%= f.airport %></td>
-                <td><a href="/flights/<%= f._id %>"><img src="/public/images/info.png"></a></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
-    <a href="/flights/new">Add Flight</a>
+    <div class="pageTitle">
+        <h2>All Flights</h2>
+        <table class="flightBoard">
+            <thead>
+                <tr id="flightHeader">
+                    <th>Airline
+                        <a class="asc" href="/flights?sortBy=airline&sortDir=1">&#9650</a>
+                        <a class="desc" href="/flights?sortBy=airline&sortDir=-1">&#9660</a>
+                    </th>
+                    <th>Flight No.
+                        <a class="asc" href="/flights?sortBy=flightNumber&sortDir=1">▲</a>
+                        <a class="desc" href="/flights?sortBy=flightNumber&sortDir=-1">▼</a>
+                    </th>
+                    <th>Airport
+                        <a class="asc" href="/flights?sortBy=airport&sortDir=1">▲</a>
+                        <a class="desc" href="/flights?sortBy=airport&sortDir=-1">▼</a>
+                    </th>
+                    <th>Departs
+                        <a class="asc" href="/flights?sortBy=departs&sortDir=1">▲</a>
+                        <a class="desc" href="/flights?sortBy=departs&sortDir=-1">▼</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="flightBoard">
+                <% flights.forEach(function(f) { %>
+                <tr>
+                    <td>
+                        <a <%- f.departs < new Date() ? 'class="pastFlight"' : '' %> href="/flights/<%= f._id %>">
+                            <%= f.airline %>
+                    </td>
+                    <td>
+                        <a <%- f.departs < new Date() ? 'class="pastFlight"' : '' %>href="/flights/<%= f._id %>">✈
+                            <%= f.flightNumber %>
+                        </a>
+                    </td>
+                    <td>
+                        <a <%- f.departs < new Date() ? 'class="pastFlight"' : '' %> href="/flights/<%= f._id %>">
+                            <%= f.airport %>
+                        </a>
+                    </td>
+                    <td>
+                        <a <%- f.departs < new Date() ? 'class="pastFlight"' : '' %> href="/flights/<%= f._id %>">
+                            <%= f.departs %>
+                        </a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table><br><br>
+        <button class="board" onclick="window.location.href = '/flights/new';">Add Flight</button>
+    </div>
+
 </body>
 
 </html>
-
-

@@ -1,38 +1,120 @@
 body {
-  background-color: #6E7E8E;
-  font-family: Verdana;
-  color: #eee;
-  padding: 30px;
+    background-color: rgb(47, 117, 188);
+    font-family: Verdana;
+    color: #eee;
+    margin: 0 auto;
 }
 
-h1 {
-  font-size: 40px; 
-  text-transform: uppercase; 
-  letter-spacing: 2px;
+#flightHeader {
+    background-color: black;
+    width: 1000px;
+    margin: 0 auto;
+    height: 40px;
+    font-size: 18px;
 }
 
-p {
-  font-size: 16px;
+.flightBoard {
+    display: table-header-group;
+    font-size: 14px;
+    font-family: 'PT Mono', monospace;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    padding: 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 80vw;
 }
 
-nav li {
-  display: inline-block;
-  margin-right: 10px;
+.pageTitle {
+    margin: 0 auto;
 }
+
+h2 {
+    font-family: 'Comfortaa', cursive;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+tr>th {
+    padding: 5px 10px;
+    margin: 0;
+}
+
+tr>td {
+    padding: 0 10px;
+    margin: 0;
+}
+
+th>a {
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+td>a {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    text-decoration: none;
+    color: white;
+}
+
+td>a:hover {
+    color: rgb(61, 97, 255);
+}
+
+.asc {
+    color: rgb(155, 225, 121)
+}
+
+.desc {
+    color: rgb(255, 121, 121);
+}
+
+.asc:hover {
+    color: rgb(52, 155, 0)
+}
+
+.desc:hover {
+    color: red;
+}
+
+tbody>td:odd {
+    background-color: rgb(84, 84, 84);
+}
+
+.flightBoard>td:even {
+    background-color: rgb(53, 53, 53);
+}
+
+body>nav {
+    background-color: rgb(74, 74, 74);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px 0 30px;
+    text-align: center;
+}
+
+/* nav>a {
+    margin: 20px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav>a:hover {
+    color: white;
+    background-color: #424748;
+} */
 
 nav a {
-  text-decoration: none;
-  color: white;
+    text-decoration: none;
+    color: white;
+    margin: 0 5px;
 }
 
 nav a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
-table {
-  font-size: 14px;
-}
-
-.flightNumber {
-  text-align: center;
+.pastFlight {
+    color: rgb(145, 0, 0);
 }

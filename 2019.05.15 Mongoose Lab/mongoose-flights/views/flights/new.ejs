@@ -11,34 +11,32 @@
 
 <body>
     <%- include('../partials/nav') %>
-    <h2>Enter a New Flight</h2>
-    <form action="/flights" method="POST">
-        <label>Airline:
+        <h2>Enter a New Flight</h2>
+        <form action="/flights" method="POST">
+            <label>Airline:
         </label>
-        <select name="airline">
-            <option value="null"></option>
+            <select name="airline">
             <option value="American">American</option>
             <option value="Southwest">Southwest</option>
             <option value="United">United</option>
         </select><br>
-        <label>Flight Number:
+            <label>Flight Number:
             <input type="number" name="flightNumber">
         </label><br>
-        <label>Departure Date
-            <input type="datetime-local" name="departs" value="2018-06-12T19:30">
+            <label>Departs:
+            <input type="datetime-local" name="departs" default="<% new Date(new Date().setFullYear(new Date().getFullYear() + 1)) %>">
         </label><br>
-        <label>Airport
+            <label>Airport
             <select name="airport">
-                <option value="null"></option>
                 <option value="AUS">AUS</option>
                 <option value="DAL">DAL</option>
                 <option value="LAX">LAX</option>
                 <option value="SEA">SEA</option>
             </select><br>
         </label>
-        
-        <input type="submit" value="Add Flight">
-    </form>
+
+            <input type="submit" value="Add Flight">
+        </form>
 </body>
 
 </html>
