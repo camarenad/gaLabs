@@ -57,16 +57,22 @@
                     <a class="asc" href="/flights/<%= flight._id %>/?sortBy=arrival&sortDir=1">&#9650</a>
                     <a class="desc" href="/flights/<%= flight._id %>/?sortBy=arrival&sortDir=-1">&#9660</a>
                 </th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <% destinations.forEach(function(f) { %>
+            <% destinations.forEach(function(d) { %>
             <tr>
                 <td>
-                    <%= f.airport %>
+                    <%= d.airport %>
                 </td>
                 <td>
-                    <%= f.arrival %>
+                    <%= d.arrival %>
+                </td>
+                <td>
+                    <form action="/<%= flight._id %>/<%= d._id %>?_method=DELETE" method="POST">
+                        <button type="submit">X</button>
+                    </form>
                 </td>
             </tr>
             <% }); %>

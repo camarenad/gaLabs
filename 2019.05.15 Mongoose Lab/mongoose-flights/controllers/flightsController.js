@@ -44,18 +44,6 @@ function show(req, res) {
     Flight.findById(req.params.flightId).populate('tickets').exec(function (err, flight) {
         Ticket.find({ _id: { $nin: flight.tickets } }).exec(function (err, tickets) {
             var destinations = flight.destinations;
-            // console.log({ 'flight.destinations._id': ObjectId('5ce221703f4a04becca1a2b0') })
-            console.log('FLIGHT BELOW')
-            console.log(flight)
-            console.log('FLIGHT ABOVE')
-            console.log('FLIGHT DESTINATIONS BELOW')
-            console.log(flight.destinations)
-            console.log('FLIGHT DESTINATIONS ABOVE')
-
-        Flight.update(
-            { 'flight.destinations._id': ('5ce24e4afa40a4c6f36dc214') },
-            { $pull: { 'flights.$.destinations': { '_id': ('5ce24e4afa40a4c6f36dc214') } } }
-        )
 
             if (sortBy == 'airport' && sortDir == '1') {
                 destinations.sort(function (a, b) {
@@ -90,9 +78,6 @@ function show(req, res) {
                 });
             }
 
-            // destinations.
-
-
             res.render('flights/show', {
                 title: 'Flight Detail',
                 flight,
@@ -120,12 +105,18 @@ function deleteTicket(req, res) {
 }
 
 // function deleteDestination(req, res) {
-//     Flight.findById(req.params.flightId).exec(function (err, flight) {
+//     console.log('DELETE REQUEST BELOW')
+//     console.log(req.params.destinationId)
+//     console.log('DELETE REQUEST ABOVE')
+//     console.log('DELETE REQUEST BELOW')
+//     console.log(req.params)
+//     console.log('DELETE REQUEST ABOVE')
 
-    
-//     Flight.update(
-//         { 'flight.destinations._id': ObjectId('5ce221703f4a04becca1a2b0') },
-//         { $pull: { 'flights.$.destinations': { '_id': ObjectId('5ce221703f4a04becca1a2b0') } } }
-//     );
+
+//     Flight.findByIdAndUpdate(req.params.flightId, 
+//         { 'flight.destinations._id': (req.params.destinationId) },
+//         { $pull: { 'flight.$.destinations': { '_id': (req.params.destinationId) } } }
+//     )
+
 //     res.redirect(`/flights/${req.params.flightId}`);
 // }
